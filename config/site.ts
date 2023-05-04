@@ -1,9 +1,8 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
-  description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+  name: "DevDocGPT",
+  description: "Create documentation easily using OpenAi's GPT-4 models.",
   mainNav: [
     {
       title: "Home",
@@ -11,8 +10,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    twitter: "https://twitter.com/PeyronnetGroup",
+    github: "https://github.com/DevyusCode/DevDocGPT",
+    docs: "https://peyronnet.group",
   },
 }
