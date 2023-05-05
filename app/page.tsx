@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+import { Loader2 } from "lucide-react"
 import { Configuration, OpenAIApi } from "openai"
 
 import { siteConfig } from "@/config/site"
@@ -21,6 +22,8 @@ import { Textarea } from "@/components/ui/textarea"
 export default function IndexPage() {
   let model = "gpt-3.5-turbo"
   let [md, setMd] = useState("# Hello")
+  let [sent, setSent] = useState(false)
+
   async function getDoc() {
     let key: string = (document.getElementById("pwr") as HTMLInputElement).value
 
@@ -37,6 +40,7 @@ export default function IndexPage() {
       apiKey: key,
     })
     const openai = new OpenAIApi(configuration)
+    setSent(true)
     try {
       const completion = await openai.createChatCompletion({
         model: model,
@@ -56,6 +60,7 @@ export default function IndexPage() {
       })
       let res = completion.data.choices[0].message?.content
       setMd(res ?? "An error occured")
+      setSent(false)
     } catch (error) {
       alert("An error occured:\n" + error)
     }
@@ -88,9 +93,19 @@ export default function IndexPage() {
                 placeholder="Code will be shown here"
                 value={md}
               />
+              <div
+                className={
+                  sent
+                    ? "flex flex-col justify-center shadow-md rounded-md p-8 items-center m-4 sm:m-16"
+                    : "hidden"
+                }
+              >
+                <Loader2 className="animate-spin mr-4" size={48} />
+                <p>Please wait</p>
+              </div>
             </TabsContent>
 
-            <TabsContent value="preview"></TabsContent>
+            <TabsContent value="preview">Soon</TabsContent>
           </Tabs>
         </div>
         <div className="space-y-2">
@@ -120,7 +135,14 @@ export default function IndexPage() {
             </SelectContent>
           </Select>
           <div className="flex justify-center m-4">
-            <Button onClick={getDoc}>Generate</Button>
+            <Button onClick={getDoc}>
+              <Loader2
+                className={
+                  sent ? "animate-spin mr-4" : "animate-spin mr-4 hidden"
+                }
+              />
+              {!sent ? "Generate" : "Please wait"}
+            </Button>
           </div>
         </div>
       </section>
