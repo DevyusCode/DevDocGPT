@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from "react"
-import Link from "next/link"
 import { Configuration, OpenAIApi } from "openai"
 
 import { siteConfig } from "@/config/site"
@@ -21,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
   let model = "gpt-3.5-turbo"
+  let [md, setMd] = useState("# Hello")
   async function getDoc() {
     let key: string = (document.getElementById("pwr") as HTMLInputElement).value
 
@@ -54,15 +54,14 @@ export default function IndexPage() {
           },
         ],
       })
-      let res = completion.data.choices[0].message.content
-      let text = document.getElementById("codetxt") as HTMLTextAreaElement
-      text.value = res
+      let res = completion.data.choices[0].message?.content
+      setMd(res ?? "An error occured")
     } catch (error) {
       alert("An error occured:\n" + error)
     }
   }
 
-  function onModelChange(v) {
+  function onModelChange(v: string) {
     model = v
   }
 
@@ -87,11 +86,11 @@ export default function IndexPage() {
               <Textarea
                 id="codetxt"
                 placeholder="Code will be shown here"
-                className=""
+                value={md}
               />
             </TabsContent>
 
-            <TabsContent value="preview">Soon.</TabsContent>
+            <TabsContent value="preview"></TabsContent>
           </Tabs>
         </div>
         <div className="space-y-2">
