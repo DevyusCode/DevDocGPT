@@ -17,7 +17,7 @@ export function MainNav({ items }: MainNavProps) {
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
-        <p className="text-center flex items-center px-2 py-1 text-sm rounded-full m-1 text-orange-900 dark:text-orange-300 dark:bg-orange-900 bg-orange-100 border border-orange-600">
+        <p className="m-1 flex items-center rounded-full border border-orange-600 bg-orange-100 px-2 py-1 text-center text-sm text-orange-900 dark:bg-orange-900 dark:text-orange-300">
           Preview
         </p>
       </Link>

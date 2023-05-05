@@ -69,20 +69,22 @@ export default function IndexPage() {
   function onModelChange(v: string) {
     model = v
   }
-  const sectionRef = useRef(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
 
   function scrollToSection() {
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   return (
     <div className="container">
-      <section className="flex flex-col items-center min-h-screen justify-center">
+      <section className="flex min-h-screen flex-col items-center justify-center">
         <h1 className="text-5xl font-bold ">
           Create documentation easily with AI.
         </h1>
         <p className="text-slate-500">
-          Document your products using OpenAI's GPT-4 models.
+          Document your products using OpenAI&apos;s GPT-4 models.
         </p>
         <Button className="m-2" onClick={scrollToSection}>
           Get started
@@ -90,7 +92,7 @@ export default function IndexPage() {
       </section>
       <section
         ref={sectionRef}
-        className="grid grid-cols-2 p-5 m-2 rounded-lg shadow-lg dark:bg-slate-900 space-x-2"
+        className="m-2 grid grid-cols-2 space-x-2 rounded-lg p-5 shadow-lg dark:bg-slate-900"
       >
         <div>
           <Tabs defaultValue="code">
@@ -98,7 +100,7 @@ export default function IndexPage() {
               <TabsTrigger value="code">Code</TabsTrigger>
               <TabsTrigger value="preview">Preview</TabsTrigger>
             </TabsList>
-            <TabsContent value="code" className="w-full h-full">
+            <TabsContent value="code" className="h-full w-full">
               <Textarea
                 id="codetxt"
                 placeholder="Code will be shown here"
@@ -107,11 +109,11 @@ export default function IndexPage() {
               <div
                 className={
                   sent
-                    ? "flex flex-col justify-center shadow-md rounded-md p-8 items-center m-4 sm:m-16"
+                    ? "m-4 flex flex-col items-center justify-center rounded-md p-8 shadow-md sm:m-16"
                     : "hidden"
                 }
               >
-                <Loader2 className="animate-spin mr-4" size={48} />
+                <Loader2 className="mr-4 animate-spin" size={48} />
                 <p>Please wait</p>
               </div>
             </TabsContent>
@@ -120,19 +122,19 @@ export default function IndexPage() {
           </Tabs>
         </div>
         <div className="space-y-2">
-          <h2 className="font-bold text-2xl">Settings</h2>
-          <h3 className="font-bold text-xl">Template</h3>
+          <h2 className="text-2xl font-bold">Settings</h2>
+          <h3 className="text-xl font-bold">Template</h3>
           <Textarea
             id="templatetxt"
             placeholder="Paste your markdown documentation template here."
           />
-          <h3 className="font-bold text-xl">Code Snippet</h3>
+          <h3 className="text-xl font-bold">Code Snippet</h3>
           <Textarea
             id="codesnippet"
             placeholder="Paste your code snippet here."
           />
-          <h3 className="font-bold text-xl">Model</h3>
-          <div className="flex space-x-2 items-center">
+          <h3 className="text-xl font-bold">Model</h3>
+          <div className="flex items-center space-x-2">
             <p>Key</p>
             <Input id="pwr" />
           </div>
@@ -145,11 +147,11 @@ export default function IndexPage() {
               <SelectItem value="gpt-4">gpt-4</SelectItem>
             </SelectContent>
           </Select>
-          <div className="flex justify-center m-4">
+          <div className="m-4 flex justify-center">
             <Button onClick={getDoc}>
               <Loader2
                 className={
-                  sent ? "animate-spin mr-4" : "animate-spin mr-4 hidden"
+                  sent ? "mr-4 animate-spin" : "mr-4 hidden animate-spin"
                 }
               />
               {!sent ? "Generate" : "Please wait"}
