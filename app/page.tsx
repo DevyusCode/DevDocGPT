@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { Configuration, OpenAIApi } from "openai"
 
@@ -69,6 +69,11 @@ export default function IndexPage() {
   function onModelChange(v: string) {
     model = v
   }
+  const sectionRef = useRef(null)
+
+  function scrollToSection() {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
     <div className="container">
@@ -79,8 +84,14 @@ export default function IndexPage() {
         <p className="text-slate-500">
           Document your products using OpenAI's GPT-4 models.
         </p>
+        <Button className="m-2" onClick={scrollToSection}>
+          Get started
+        </Button>
       </section>
-      <section className="grid grid-cols-2 p-5 m-2 rounded-lg shadow-lg dark:bg-slate-900 space-x-2">
+      <section
+        ref={sectionRef}
+        className="grid grid-cols-2 p-5 m-2 rounded-lg shadow-lg dark:bg-slate-900 space-x-2"
+      >
         <div>
           <Tabs defaultValue="code">
             <TabsList className="grid w-full grid-cols-2">
