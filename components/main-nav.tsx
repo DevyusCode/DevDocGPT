@@ -14,10 +14,12 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Icons.logo className="h-6 w-6" />
         <span className="hidden font-bold sm:inline-block">
           {siteConfig.name}
         </span>
+        <p className="text-center flex items-center px-2 py-1 text-sm rounded-full m-1 text-orange-900 dark:text-orange-300 dark:bg-orange-900 bg-orange-100 border border-orange-600">
+          Preview
+        </p>
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
