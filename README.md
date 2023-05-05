@@ -2,7 +2,6 @@
 ![GitHub issues](https://img.shields.io/github/issues/DevyusCode/DevDocGPT)
 ![GitHub](https://img.shields.io/github/license/DevyusCode/DevDocGPT)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/DevyusCode/DevDocGPT)
-![Nuget](https://img.shields.io/nuget/dt/PeyrSharp)
 
 <br />
 <p align="center">
