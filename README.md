@@ -29,6 +29,26 @@ DevDocGPT is a tool that generates documentation using OpenAI’s GPT models. It
 
 DevDocGPT uses GPT-3, the latest and most advanced model of OpenAI, which has 175 billion parameters and can generate coherent and diverse texts on various topics. DevDocGPT leverages the power of GPT-3 to understand the context and the intent of the input text, and to generate relevant and informative documentation in markdown format. DevDocGPT can also use GPT-4.
 
+## Contribute
+
+To contribute to the project, you'll need:
+
+- Microsoft Visual Studio Code
+- Node.js and `npm`.
+- Git
+
+[Click here](https://github.com/DevyusCode/DevDocGPT/blob/main/CONTRIBUTING.md) to see the full guidelines.
+
+## Branches
+
+This Git repo has two branches:
+
+|  Name   |                                                                    Release                                                                     |             Description             |
+| :-----: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------: |
+| `main`  |                      ![GitHub release (latest by date)](https://img.shields.io/github/v/release/DevyusCode/DevDocGPT)                      |           Stable versions           |
+| `vNext` | ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/DevyusCode/DevDocGPT?include_prereleases) | Next version of DevDocGPT (unstable) |
+
+
 ## License
 
 This project is under the [MIT License](LICENSE)
