@@ -1,6 +1,8 @@
 "use client"
 
 import React, { useRef, useState } from "react"
+import dynamic from "next/dynamic"
+import { MarkdownPreviewProps } from "@uiw/react-markdown-preview"
 import { Loader2 } from "lucide-react"
 import { Configuration, OpenAIApi } from "openai"
 import { CodeBlock, sunburst } from "react-code-blocks"
@@ -16,6 +18,13 @@ import {
 } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
+
+const MarkdownPreview = dynamic<MarkdownPreviewProps>(
+  () => import("@uiw/react-markdown-preview"),
+  {
+    ssr: false,
+  }
+)
 
 export default function IndexPage() {
   let model = "gpt-3.5-turbo"
@@ -120,7 +129,14 @@ export default function IndexPage() {
               </div>
             </TabsContent>
 
-            <TabsContent value="preview">Soon</TabsContent>
+            <TabsContent value="preview">
+              <div>
+                <MarkdownPreview
+                  className="prose dark:prose-invert"
+                  source={md}
+                />
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
         <div className="space-y-2">
