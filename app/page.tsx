@@ -3,16 +3,14 @@
 import React, { useRef, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { Configuration, OpenAIApi } from "openai"
+import { CodeBlock, sunburst } from "react-code-blocks"
 
-import { siteConfig } from "@/config/site"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -101,11 +99,15 @@ export default function IndexPage() {
               <TabsTrigger value="preview">Preview</TabsTrigger>
             </TabsList>
             <TabsContent value="code" className="h-full w-full">
-              <Textarea
-                id="codetxt"
-                placeholder="Code will be shown here"
-                value={md}
-              />
+              <div style={{ fontFamily: "consolas" }}>
+                <CodeBlock
+                  text={md}
+                  language="markdown"
+                  wrapLines
+                  showLineNumbers={false}
+                  theme={sunburst}
+                />
+              </div>
               <div
                 className={
                   sent
