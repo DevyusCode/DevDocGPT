@@ -99,9 +99,9 @@ export default function IndexPage() {
       </section>
       <section
         ref={sectionRef}
-        className="m-2 grid grid-cols-2 space-x-2 rounded-lg p-5 shadow-lg dark:bg-slate-900"
+        className="m-2 grid space-x-2 rounded-lg p-5 shadow-lg dark:bg-slate-900 sm:grid-cols-2"
       >
-        <div>
+        <div className="mb-5 sm:mb-0">
           <Tabs defaultValue="code">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="code">Code</TabsTrigger>
