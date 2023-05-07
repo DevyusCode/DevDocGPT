@@ -117,16 +117,6 @@ export default function IndexPage() {
                   theme={sunburst}
                 />
               </div>
-              <div
-                className={
-                  sent
-                    ? "m-4 flex flex-col items-center justify-center rounded-md p-8 shadow-md sm:m-16"
-                    : "hidden"
-                }
-              >
-                <Loader2 className="mr-4 animate-spin" size={48} />
-                <p>Please wait</p>
-              </div>
             </TabsContent>
 
             <TabsContent value="preview">
@@ -138,6 +128,16 @@ export default function IndexPage() {
               </div>
             </TabsContent>
           </Tabs>
+          <div
+            className={
+              sent
+                ? "m-4 flex flex-col items-center justify-center rounded-md p-8 shadow-md sm:m-16"
+                : "hidden"
+            }
+          >
+            <Loader2 className="mr-4 animate-spin" size={48} />
+            <p>Please wait</p>
+          </div>
         </div>
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">Settings</h2>
