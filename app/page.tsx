@@ -19,6 +19,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 
+import "@uiw/react-textarea-code-editor/dist.css"
+import { useTheme } from "next-themes"
+
 const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   () => import("@uiw/react-markdown-preview"),
   {
@@ -26,10 +29,18 @@ const MarkdownPreview = dynamic<MarkdownPreviewProps>(
   }
 )
 
+const CodeEditor = dynamic(
+  () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
+  { ssr: false }
+)
 export default function IndexPage() {
+  const { theme } = useTheme()
+
   let model = "gpt-3.5-turbo"
-  let [md, setMd] = useState("# Hello")
-  let [sent, setSent] = useState(false)
+  const [md, setMd] = useState("# Hello")
+  const [sent, setSent] = useState(false)
+  const [template, setTemplate] = React.useState(``)
+  const [codeSn, setCodeSn] = useState("")
 
   async function getDoc() {
     let key: string = (document.getElementById("pwr") as HTMLInputElement).value
@@ -38,11 +49,6 @@ export default function IndexPage() {
       alert("Specify a valid key.")
       return
     }
-    let template = (
-      document.getElementById("templatetxt") as HTMLTextAreaElement
-    ).value
-    let codeSn = (document.getElementById("codesnippet") as HTMLTextAreaElement)
-      .value
     const configuration = new Configuration({
       apiKey: key,
     })
@@ -142,14 +148,32 @@ export default function IndexPage() {
         <div className="space-y-2">
           <h2 className="text-2xl font-bold">Settings</h2>
           <h3 className="text-xl font-bold">Template</h3>
-          <Textarea
-            id="templatetxt"
+          <CodeEditor
+            className="rounded-md border border-input"
+            value={template}
+            language="markdown"
             placeholder="Paste your markdown documentation template here."
+            onChange={(evn) => setTemplate(evn.target.value)}
+            padding={15}
+            data-color-mode={theme == "light" ? "light" : "dark"}
+            style={{
+              fontFamily:
+                "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+            }}
           />
           <h3 className="text-xl font-bold">Code Snippet</h3>
-          <Textarea
-            id="codesnippet"
+          <CodeEditor
+            className="rounded-md border border-input"
+            value={codeSn}
+            language="markdown"
             placeholder="Paste your code snippet here."
+            onChange={(evn) => setCodeSn(evn.target.value)}
+            padding={15}
+            data-color-mode={theme == "light" ? "light" : "dark"}
+            style={{
+              fontFamily:
+                "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+            }}
           />
           <h3 className="text-xl font-bold">Model</h3>
           <div className="flex items-center space-x-2">
