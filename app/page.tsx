@@ -35,12 +35,103 @@ const CodeEditor = dynamic(
 )
 export default function IndexPage() {
   const { theme } = useTheme()
-
+  const languages = [
+    "abap",
+    "aes",
+    "apex",
+    "bat",
+    "bicep",
+    "brainfuck",
+    "c",
+    "cameligo",
+    "clike",
+    "clojure",
+    "coffeescript",
+    "cpp",
+    "csharp",
+    "csp",
+    "css",
+    "dart",
+    "dockerfile",
+    "ecl",
+    "elixir",
+    "erlang",
+    "flow9",
+    "fsharp",
+    "freemarker2",
+    "go",
+    "graphql",
+    "handlebars",
+    "hcl",
+    "html",
+    "ini",
+    "java",
+    "javascript",
+    "json",
+    "jsx",
+    "julia",
+    "kotlin",
+    "less",
+    "lex",
+    "lexon",
+    "liquid",
+    "livescript",
+    "lua",
+    "m3",
+    "markdown",
+    "mips",
+    "msdax",
+    "mysql",
+    "nginx",
+    "pascal",
+    "pascaligo",
+    "perl",
+    "php",
+    "pla",
+    "plaintext",
+    "postiats",
+    "powerquery",
+    "powershell",
+    "proto",
+    "pug",
+    "python",
+    "qsharp",
+    "r",
+    "razor",
+    "redis",
+    "redshift",
+    "restructuredtext",
+    "ruby",
+    "rust",
+    "sb",
+    "scala",
+    "scheme",
+    "scss",
+    "shell",
+    "sol",
+    "sparql",
+    "sql",
+    "st",
+    "stylus",
+    "swift",
+    "systemverilog",
+    "tcl",
+    "toml",
+    "tsx",
+    "twig",
+    "typescript",
+    "vb",
+    "vbscript",
+    "verilog",
+    "xml",
+    "yaml",
+  ]
   let model = "gpt-3.5-turbo"
   const [md, setMd] = useState("# Hello")
   const [sent, setSent] = useState(false)
   const [template, setTemplate] = React.useState(``)
   const [codeSn, setCodeSn] = useState("")
+  const [lang, setLang] = useState("js")
 
   async function getDoc() {
     let key: string = (document.getElementById("pwr") as HTMLInputElement).value
@@ -161,11 +252,23 @@ export default function IndexPage() {
                 "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
             }}
           />
-          <h3 className="text-xl font-bold">Code Snippet</h3>
+          <div className="flex items-center space-x-2">
+            <h3 className="text-xl font-bold">Code Snippet</h3>
+            <Select onValueChange={setLang}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select a language" />
+              </SelectTrigger>
+              <SelectContent className="max-h-[180px]">
+                {languages.map((el) => {
+                  return <SelectItem value={el}>{el}</SelectItem>
+                })}
+              </SelectContent>
+            </Select>
+          </div>
           <CodeEditor
             className="rounded-md border border-input"
             value={codeSn}
-            language="markdown"
+            language={lang}
             placeholder="Paste your code snippet here."
             onChange={(evn) => setCodeSn(evn.target.value)}
             padding={15}
@@ -175,6 +278,7 @@ export default function IndexPage() {
                 "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
             }}
           />
+
           <h3 className="text-xl font-bold">Model</h3>
           <div className="flex items-center space-x-2">
             <p>Key</p>
