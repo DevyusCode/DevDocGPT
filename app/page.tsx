@@ -282,7 +282,7 @@ export default function IndexPage() {
           <h3 className="text-xl font-bold">Model</h3>
           <div className="flex items-center space-x-2">
             <p>Key</p>
-            <Input id="pwr" />
+            <Input type="password" id="pwr" />
           </div>
           <Select onValueChange={onModelChange} defaultValue="gpt-3.5-turbo">
             <SelectTrigger>
