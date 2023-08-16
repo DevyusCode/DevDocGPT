@@ -207,11 +207,13 @@ export default function IndexPage() {
             <TabsContent value="code" className="h-full w-full">
               <div style={{ fontFamily: "consolas" }}>
                 <CodeBlock
-                  text={md}
-                  language="markdown"
-                  wrapLines
-                  showLineNumbers={false}
-                  theme={sunburst}
+                  {...{
+                    text: md,
+                    language: "markdown",
+                    wrapLines: true,
+                    showLineNumbers: false,
+                    theme: sunburst,
+                  }}
                 />
               </div>
             </TabsContent>
