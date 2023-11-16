@@ -13,15 +13,11 @@
 
   <p align="center">
     Generate markdown documentation easily with the power of AI.
-    <br />
-    <a href=""><strong>Try it »</strong></a>
-    <br />
-    <a href="https://github.com/DevyusCode/DevDocGPT/issues/new?assignees=&labels=bug&template=bug-report.yml&title=%5BBug%5D+">Report Bug</a>
-    ·
-    <a href="https://github.com/DevyusCode/DevDocGPT/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=%5BEnhancement%5D+">Request Feature</a>
-
   </p>
 </p>
+
+# Archive Note
+This repo is no longer maintained and is replaced by [@synapsy-ai/genidoc](https://github.com/synapsy-ai/genidoc/).
 
 ## Introduction
 
